@@ -72,4 +72,11 @@ public class ProductController {
 	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient quantity");
 	    }
 	}
+	
+	@PutMapping("/restore/{id}/{quantity}")
+	public ResponseEntity<String> restoreProduct(@PathVariable("id") Long id,@PathVariable("quantity") int quantity)
+	{
+		productService.restoreProduct(id,quantity);
+		return ResponseEntity.ok("Product quantity restored");
+	}
 }

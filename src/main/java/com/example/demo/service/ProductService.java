@@ -69,6 +69,11 @@ public class ProductService {
 
 	    return false;
 	}
-
-
+	
+	public void restoreProduct(Long id,int quantity)
+	{
+		Product product=productRepository.findById(id).orElseThrow(()->new ResourceNotFoundException("Product with ID "+id+" not found "));
+		product.setQuantity(product.getQuantity()+quantity);
+		productRepository.save(product);
+	}
 }
