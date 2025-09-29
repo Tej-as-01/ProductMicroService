@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -56,7 +57,18 @@ public class ProductService {
 		
 		productRepository.deleteById(id);
 	}
-	
+	public boolean reserveProduct(Long id, int quantity) {
+	    Product product = productRepository.findById(id)
+	        .orElseThrow(() -> new ResourceNotFoundException("Product with ID " + id + " not found"));
+
+	    if (product.getQuantity() >= quantity) {
+	        product.setQuantity(product.getQuantity() - quantity);
+	        productRepository.save(product);
+	        return true;
+	    }
+
+	    return false;
+	}
 
 
 }

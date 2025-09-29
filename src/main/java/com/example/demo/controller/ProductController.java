@@ -62,4 +62,14 @@ public class ProductController {
 		productService.deleteProductById(id);
 		return ResponseEntity.status(HttpStatus.OK).body("Product with ID "+id+" is deleted");
 	}
+	
+	@PutMapping("/{id}/{quantity}")
+	public ResponseEntity<String> reserveProduct(@PathVariable("id") Long productId, @PathVariable("quantity") int quantity) {
+	    boolean success = productService.reserveProduct(productId, quantity);
+	    if (success) {
+	        return ResponseEntity.ok("Product reserved");
+	    } else {
+	        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Insufficient quantity");
+	    }
+	}
 }
