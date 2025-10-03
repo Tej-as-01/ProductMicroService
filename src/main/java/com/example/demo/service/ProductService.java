@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.Exceptions.ResourceNotFoundException;
-import com.example.demo.repo.Product;
-import com.example.demo.repo.ProductRepository;
+import com.example.demo.model.Product;
+import com.example.demo.repository.ProductRepository;
 
 @Service
 public class ProductService {
@@ -76,4 +76,13 @@ public class ProductService {
 		product.setQuantity(product.getQuantity()+quantity);
 		productRepository.save(product);
 	}
+	
+	public List<Product> getProductsByCategory(String category) {
+	    return productRepository.findByCategory(category);
+	}
+
+	public List<Product> getProductsByPriceRangeAndCategory(int minPrice, int maxPrice, String category) {
+	    return productRepository.findByPriceBetweenAndCategory(minPrice, maxPrice, category);
+	}
+
 }

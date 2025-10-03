@@ -1,4 +1,4 @@
-package com.example.demo.repo;
+package com.example.demo.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Column;
@@ -34,8 +34,6 @@ public class Product {
 	public Long getId() {
 		return id;
 	}
-
-
 	public void setId(Long id) {
 		this.id = id;
 	}
