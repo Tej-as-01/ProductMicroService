@@ -1,12 +1,15 @@
 package com.example.demo.model;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
+/**
+ * Represents a product in the system.
+ * Contains details such as name, category, quantity, and price.
+ */
 @Entity
 public class Product {
 	
@@ -24,13 +27,13 @@ public class Product {
 	@Column(nullable=false)
 	private int price;
 	
-	
+	//Constructor
 	public Product()
 	{
 		
 	}
 
-
+    //Getters and Setters
 	public Long getId() {
 		return id;
 	}
